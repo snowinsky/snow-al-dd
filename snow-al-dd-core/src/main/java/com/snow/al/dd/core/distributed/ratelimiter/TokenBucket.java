@@ -1,4 +1,4 @@
-package com.snow.al.dd.core.distributedratelimiter;
+package com.snow.al.dd.core.distributed.ratelimiter;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

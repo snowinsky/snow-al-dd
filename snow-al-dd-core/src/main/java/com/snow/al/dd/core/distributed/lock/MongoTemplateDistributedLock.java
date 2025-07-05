@@ -1,4 +1,4 @@
-package com.snow.al.dd.core.distributedlock;
+package com.snow.al.dd.core.distributed.lock;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -14,29 +14,16 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.UUID;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @RequiredArgsConstructor
-public class MongoTemplateDistributedLock {
+public class MongoTemplateDistributedLock implements DdLock {
     private final MongoTemplate mongoTemplate;
     private final ScheduledExecutorService scheduler = new ScheduledThreadPoolExecutor(1);
-    private final String clientPerPod = UUID.randomUUID().toString();
 
-    public String getGlobalClientId() {
-        return Integer.MAX_VALUE + "";
-    }
-
-    public String getPodClientId() {
-        return clientPerPod;
-    }
-
-    public String getThreadClientId() {
-        return UUID.randomUUID().toString();
-    }
 
     @PostConstruct
     public void initIndex() {
@@ -162,5 +149,22 @@ public class MongoTemplateDistributedLock {
             // 完全释放锁
             mongoTemplate.remove(query, DistributedLock.class);
         }
+    }
+
+
+    @Override
+    public boolean tryLock(String key, Duration waitInterval) {
+        //TODO
+        return false;
+    }
+
+    @Override
+    public void unlock(String key) {
+        //TODO
+    }
+
+    @Override
+    public void tryLock(String key, Duration waitInterval, Runnable runnable) {
+        //TODO
     }
 }

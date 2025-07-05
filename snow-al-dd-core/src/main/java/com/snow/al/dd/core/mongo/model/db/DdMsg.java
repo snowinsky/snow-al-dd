@@ -11,7 +11,7 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.Instant;
+import java.util.Date;
 
 @Document(collection = "dd_msg")
 @Data
@@ -27,8 +27,8 @@ public class DdMsg {
     private String ddMsgBody;
     private String status;
     @CreatedDate
-    private Instant createdAt;
-    private Instant expiredAt;
+    private Date createdAt;
+    private Date expiredAt;
     @Version
     private Long version;
     private String errorMsg;

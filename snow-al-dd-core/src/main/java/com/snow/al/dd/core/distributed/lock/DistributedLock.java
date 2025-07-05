@@ -1,4 +1,4 @@
-package com.snow.al.dd.core.distributedlock;
+package com.snow.al.dd.core.distributed.lock;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
