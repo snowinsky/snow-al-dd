@@ -37,7 +37,7 @@
         <dependency>
             <groupId>com.snow.al</groupId>
             <artifactId>snow-timeoutcenter</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>2.0.0</version>
         </dependency>
     </dependencies>
 </project>
