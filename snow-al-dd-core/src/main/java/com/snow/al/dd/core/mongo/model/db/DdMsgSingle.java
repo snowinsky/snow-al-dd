@@ -16,6 +16,7 @@ public class DdMsgSingle {
     private String ddMsgId;
     private String ddMsgBody;
     private String vendorCode;
+    private String bankCode;
     private String mchTradeNo;
     private String vendorTradeNo;
     private String vendorFeedbackMode;

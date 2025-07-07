@@ -1,8 +1,9 @@
-package com.snow.al.dd.application.pack.controller;
+package com.snow.al.dd.application.mock.controller;
 
 import com.snow.al.dd.core.batch.exec.DdBatchExecutor;
 import com.snow.al.dd.core.batch.pack.BatchDdRequestConsumer;
 import com.snow.al.dd.core.mongo.model.DdRequest;
+import com.snow.al.dd.core.single.exec.DdSingleExecutor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ public class TestMongoController {
 
     private final BatchDdRequestConsumer batchDdRequestConsumer;
     private final DdBatchExecutor ddBatchExecutor;
+    private final DdSingleExecutor ddSingleExecutor;
 
 
     @GetMapping("/testPack")
@@ -35,6 +37,11 @@ public class TestMongoController {
     @GetMapping("/testExec/{batchId}")
     public void testExec(@PathVariable("batchId") String batchId) {
         ddBatchExecutor.executeNormalStatus(batchId);
+    }
+
+    @GetMapping("/testExec/single/{id}")
+    public void testSingleExec(@PathVariable("id") String id) {
+        ddSingleExecutor.executeNormalStatus(id);
     }
 
 

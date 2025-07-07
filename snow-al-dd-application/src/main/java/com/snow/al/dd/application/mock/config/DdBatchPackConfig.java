@@ -1,4 +1,4 @@
-package com.snow.al.dd.application.pack.config;
+package com.snow.al.dd.application.mock.config;
 
 import com.snow.al.dd.core.batch.pack.BatchDdRequestConsumer;
 import com.snow.al.dd.core.batch.pack.BatchDdRequestConsumerBuilder;

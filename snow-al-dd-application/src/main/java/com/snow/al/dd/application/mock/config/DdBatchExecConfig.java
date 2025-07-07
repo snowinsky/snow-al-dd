@@ -1,4 +1,4 @@
-package com.snow.al.dd.application.pack.config;
+package com.snow.al.dd.application.mock.config;
 import com.snow.al.dd.core.batch.exec.vendor.VendorDownloadResponse.DownloadNextStep;
 import com.snow.al.dd.core.batch.exec.vendor.VendorQueryResponse.QueryNextStep;
 import com.snow.al.dd.core.batch.exec.vendor.VendorSendResponse.SendNextStep;
