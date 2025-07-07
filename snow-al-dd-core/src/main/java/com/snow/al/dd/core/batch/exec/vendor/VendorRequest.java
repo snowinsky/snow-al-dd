@@ -1,6 +1,6 @@
 package com.snow.al.dd.core.batch.exec.vendor;
 
-import com.snow.al.dd.core.mongo.model.db.DdMsgBatch;
+import com.snow.al.dd.core.mongo.db.DdMsgBatch;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

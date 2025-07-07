@@ -2,7 +2,7 @@ package com.snow.al.dd.core.single.exec.vendor;
 
 import com.snow.al.dd.core.biztime.domain.SendTimeService;
 import com.snow.al.dd.core.distributed.ratelimiter.DdRateLimiter;
-import com.snow.al.dd.core.mongo.model.db.DdMsgSingle;
+import com.snow.al.dd.core.mongo.db.DdMsgSingle;
 
 public interface VendorSingleExecuteAdapter {
 

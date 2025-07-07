@@ -1,6 +1,6 @@
 package com.snow.al.dd.core.single.exec.state;
 
-import com.snow.al.dd.core.mongo.model.db.DdMsgSingle;
+import com.snow.al.dd.core.mongo.db.DdMsgSingle;
 import org.slf4j.Logger;
 
 import java.time.Duration;

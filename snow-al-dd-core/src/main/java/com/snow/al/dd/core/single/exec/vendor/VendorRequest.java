@@ -1,6 +1,6 @@
 package com.snow.al.dd.core.single.exec.vendor;
 
-import com.snow.al.dd.core.mongo.model.db.DdMsgSingle;
+import com.snow.al.dd.core.mongo.db.DdMsgSingle;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

@@ -5,7 +5,7 @@ import com.snow.al.dd.core.batch.pack.BatchDdRequestConsumerBuilder;
 import com.snow.al.dd.core.batch.pack.BatchDdRequestExtractor;
 import com.snow.al.dd.core.batch.pack.DdRequestExtractResult;
 import com.snow.al.dd.core.mongo.model.DdRequest;
-import com.snow.al.dd.core.mongo.model.db.DdMsg;
+import com.snow.al.dd.core.mongo.db.DdMsg;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.springframework.context.annotation.Bean;

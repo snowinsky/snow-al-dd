@@ -1,7 +1,7 @@
 package com.snow.al.dd.core.single.exec.state;
 
-import com.snow.al.dd.core.mongo.model.db.DdMsgSingle;
-import com.snow.al.dd.core.mongo.model.db.DdMsgSingleStatus;
+import com.snow.al.dd.core.mongo.db.DdMsgSingle;
+import com.snow.al.dd.core.mongo.db.DdMsgSingleStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;

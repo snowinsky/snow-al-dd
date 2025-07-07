@@ -2,7 +2,7 @@ package com.snow.al.dd.application.mock.config;
 
 import com.snow.al.dd.core.biztime.domain.SendTimeService;
 import com.snow.al.dd.core.distributed.ratelimiter.DdRateLimiter;
-import com.snow.al.dd.core.mongo.model.db.DdMsgSingle;
+import com.snow.al.dd.core.mongo.db.DdMsgSingle;
 import com.snow.al.dd.core.single.exec.DdSingleExecutor;
 import com.snow.al.dd.core.single.exec.DdSingleExecutorBuilder;
 import com.snow.al.dd.core.single.exec.vendor.SingleQueryResponse;

@@ -1,8 +1,8 @@
 package com.snow.al.dd.core.batch.exec.vendor;
 
 import com.snow.al.dd.core.batch.exec.state.DdBatchExecuteContext;
-import com.snow.al.dd.core.mongo.model.db.DdMsgBatch;
-import com.snow.al.dd.core.mongo.model.db.DdMsgBatchStatus;
+import com.snow.al.dd.core.mongo.db.DdMsgBatch;
+import com.snow.al.dd.core.mongo.db.DdMsgBatchStatus;
 import com.snow.al.timeoutcenter.TimeLongUtil;
 import lombok.Getter;
 import lombok.Setter;

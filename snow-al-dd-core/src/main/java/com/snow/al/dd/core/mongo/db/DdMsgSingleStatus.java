@@ -1,4 +1,4 @@
-package com.snow.al.dd.core.mongo.model.db;
+package com.snow.al.dd.core.mongo.db;
 
 import com.snow.al.dd.core.single.exec.state.DdSingleExecuteState;
 import com.snow.al.dd.core.single.exec.state.ReadyToResNotifyState;

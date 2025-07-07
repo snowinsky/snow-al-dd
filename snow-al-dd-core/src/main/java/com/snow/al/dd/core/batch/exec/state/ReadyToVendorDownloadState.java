@@ -2,8 +2,8 @@ package com.snow.al.dd.core.batch.exec.state;
 
 import com.snow.al.dd.core.batch.exec.vendor.VendorDownloadRequest;
 import com.snow.al.dd.core.batch.exec.vendor.VendorDownloadResponse;
-import com.snow.al.dd.core.mongo.model.db.DdMsgBatch;
-import com.snow.al.dd.core.mongo.model.db.DdMsgBatchStatus;
+import com.snow.al.dd.core.mongo.db.DdMsgBatch;
+import com.snow.al.dd.core.mongo.db.DdMsgBatchStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

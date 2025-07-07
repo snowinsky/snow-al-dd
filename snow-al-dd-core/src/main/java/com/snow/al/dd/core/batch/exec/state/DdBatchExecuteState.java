@@ -1,6 +1,6 @@
 package com.snow.al.dd.core.batch.exec.state;
 
-import com.snow.al.dd.core.mongo.model.db.DdMsgBatch;
+import com.snow.al.dd.core.mongo.db.DdMsgBatch;
 import org.slf4j.Logger;
 
 import java.time.Duration;

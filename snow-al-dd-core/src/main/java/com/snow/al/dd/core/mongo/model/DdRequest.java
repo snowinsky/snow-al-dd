@@ -2,7 +2,7 @@ package com.snow.al.dd.core.mongo.model;
 
 import com.snow.al.dd.core.batch.pack.BatchDdRequestExtractor;
 import com.snow.al.dd.core.batch.pack.batchtag.BatchTag;
-import com.snow.al.dd.core.mongo.model.db.DdMsg;
+import com.snow.al.dd.core.mongo.db.DdMsg;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

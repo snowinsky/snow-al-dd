@@ -9,7 +9,7 @@ import com.snow.al.dd.core.batch.exec.vendor.*;
 import com.snow.al.dd.core.biztime.domain.SendTimeService;
 import com.snow.al.dd.core.distributed.ratelimiter.DdRateLimiter;
 import com.snow.al.dd.core.distributed.ratelimiter.RedissonRateLimiter;
-import com.snow.al.dd.core.mongo.model.db.DdMsgBatch;
+import com.snow.al.dd.core.mongo.db.DdMsgBatch;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.springframework.context.annotation.Bean;

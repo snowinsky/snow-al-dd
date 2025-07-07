@@ -1,7 +1,7 @@
 package com.snow.al.dd.core.single.exec.vendor;
 
-import com.snow.al.dd.core.mongo.model.db.DdMsgSingle;
-import com.snow.al.dd.core.mongo.model.db.DdMsgSingleStatus;
+import com.snow.al.dd.core.mongo.db.DdMsgSingle;
+import com.snow.al.dd.core.mongo.db.DdMsgSingleStatus;
 import com.snow.al.dd.core.single.exec.state.DdSingleExecuteContext;
 import com.snow.al.timeoutcenter.TimeLongUtil;
 import lombok.Getter;

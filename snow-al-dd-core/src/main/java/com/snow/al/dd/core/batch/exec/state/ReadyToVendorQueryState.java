@@ -3,8 +3,8 @@ package com.snow.al.dd.core.batch.exec.state;
 import com.snow.al.dd.core.batch.exec.vendor.VendorExecuteAdapter;
 import com.snow.al.dd.core.batch.exec.vendor.VendorQueryRequest;
 import com.snow.al.dd.core.batch.exec.vendor.VendorQueryResponse;
-import com.snow.al.dd.core.mongo.model.db.DdMsgBatch;
-import com.snow.al.dd.core.mongo.model.db.DdMsgBatchStatus;
+import com.snow.al.dd.core.mongo.db.DdMsgBatch;
+import com.snow.al.dd.core.mongo.db.DdMsgBatchStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

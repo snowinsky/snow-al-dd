@@ -1,8 +1,8 @@
 package com.snow.al.dd.core.single.exec;
 
 import com.snow.al.dd.core.distributed.lock.DdLock;
-import com.snow.al.dd.core.mongo.model.db.DdMsgSingle;
-import com.snow.al.dd.core.mongo.model.db.DdMsgSingleStatus;
+import com.snow.al.dd.core.mongo.db.DdMsgSingle;
+import com.snow.al.dd.core.mongo.db.DdMsgSingleStatus;
 import com.snow.al.dd.core.single.exec.state.DdSingleExecuteContext;
 import com.snow.al.dd.core.single.exec.timeout.DdSingleExecTimeoutCenter;
 import com.snow.al.dd.core.single.exec.vendor.VendorSingleExecuteAdapter;

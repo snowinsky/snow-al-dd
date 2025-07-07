@@ -1,8 +1,8 @@
 package com.snow.al.dd.core.batch.exec.vendor;
 
 import com.snow.al.dd.core.batch.exec.state.DdBatchExecuteContext;
-import com.snow.al.dd.core.mongo.model.db.DdMsgBatch;
-import com.snow.al.dd.core.mongo.model.db.DdMsgBatchStatus;
+import com.snow.al.dd.core.mongo.db.DdMsgBatch;
+import com.snow.al.dd.core.mongo.db.DdMsgBatchStatus;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.query.Criteria;
