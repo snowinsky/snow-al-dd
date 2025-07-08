@@ -16,7 +16,7 @@ public interface DdSingleExecuteState {
     default void doExecuteCore(DdSingleExecuteContext context,
                                Logger log,
                                Consumer<DdMsgSingle> consumer) {
-        String singleDdId = context.getDdMsgId();
+        String singleDdId = context.getDdMsgSingleId();
         context.getDdLock().tryLock(singleDdId, Duration.ofSeconds(30), () -> {
             DdMsgSingle single = context.getMongoTemplate().findById(singleDdId, DdMsgSingle.class);
             log.info("singleDdId:{} 开始执行单笔操作，当前状态:{}", singleDdId, Optional.ofNullable(single).map(DdMsgSingle::getStatus).orElse(null));

@@ -3,6 +3,8 @@ package com.snow.al.dd.core.mongo.model;
 import com.snow.al.dd.core.batch.pack.BatchDdRequestExtractor;
 import com.snow.al.dd.core.batch.pack.batchtag.BatchTag;
 import com.snow.al.dd.core.mongo.db.DdMsg;
+import com.snow.al.dd.core.mongo.db.DdMsgSingle;
+import com.snow.al.dd.core.single.exec.vendor.VendorSingleExecuteAdapter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -57,4 +59,34 @@ public class DdRequest implements Serializable {
         return ddMsg;
     }
 
+    public DdMsgSingle newDdMsgSingle() {
+        var ddMsg = new DdMsgSingle();
+        ddMsg.setVendorCode(this.vendorCode);
+        ddMsg.setBankCode(this.bankCode);
+        ddMsg.setVendorFeedbackMode(this.vendorFeedbackMode);
+
+        ddMsg.setId(null);
+        ddMsg.setStatus(passEligibleCheck ? "readyToSend" : "eligibleCheckError");
+        ddMsg.setCreateAt(Instant.now());
+        ddMsg.setExpireAt(Instant.now().plus(Duration.ofDays(1)));
+        ddMsg.setErrorMsg(this.eligibleCheckError);
+
+        ddMsg.setDdMsgId(ddMsgId);
+        ddMsg.setDdMsgBody(ddMsgBody);
+        ddMsg.setRequestAmount(ddMsgAmount);
+        return ddMsg;
+    }
+
+    public void parseDdMsgBody(VendorSingleExecuteAdapter vendorSingleExecuteAdapter) {
+        var checkResult = vendorSingleExecuteAdapter.eligibleCheck(this);
+        var ss = vendorSingleExecuteAdapter.extract(this);
+        this.ddMsgId = ss.getDdMsgId();
+        this.passEligibleCheck = checkResult.getFirst();
+        this.eligibleCheckError = checkResult.getSecond();
+        this.ddMsgAmount = ss.getDdMsgAmount();
+        this.vendorCode = ss.getVendorCode();
+        this.bankCode = ss.getBankCode();
+        this.ddBatchTag = BatchTag.md5(vendorCode);
+        this.vendorFeedbackMode = ss.getVendorFeedbackMode();
+    }
 }

@@ -24,14 +24,14 @@ public class DdSingleExecutor {
     private final VendorSingleExecuteAdapter vendorExecuteAdapter;
     private final DdSingleExecTimeoutCenter ddSingleExecTimeoutCenter;
 
-    public void executeNormalStatus(String ddMsgId) {
-        DdMsgSingle ddMsgSingle = mongoTemplate.findOne(new Query(Criteria.where("id").is(ddMsgId)), DdMsgSingle.class);
+    public void executeNormalStatus(String ddMsgSingleId) {
+        DdMsgSingle ddMsgSingle = mongoTemplate.findOne(new Query(Criteria.where("id").is(ddMsgSingleId)), DdMsgSingle.class);
         if (ddMsgSingle == null) {
             return;
         }
         String singleStatus = ddMsgSingle.getStatus();
         DdSingleExecuteContext context = new DdSingleExecuteContext(
-                ddMsgId,
+                ddMsgSingleId,
                 mongoTemplate,
                 ddLock,
                 vendorExecuteAdapter,
@@ -40,18 +40,18 @@ public class DdSingleExecutor {
         context.perform();
     }
 
-    public void executePendingStatus(String ddMsgId) {
-        ddLock.tryLock(ddMsgId, Duration.ofSeconds(10), () -> {
-            var send = mongoTemplate.updateMulti(new Query(Criteria.where("id").is(ddMsgId).and("status").is(DdMsgSingleStatus.PENDING_TO_SEND.getStatus())),
+    public void executePendingStatus(String ddMsgSingleId) {
+        ddLock.tryLock(ddMsgSingleId, Duration.ofSeconds(10), () -> {
+            var send = mongoTemplate.updateMulti(new Query(Criteria.where("id").is(ddMsgSingleId).and("status").is(DdMsgSingleStatus.PENDING_TO_SEND.getStatus())),
                     new Update().set("status", DdMsgSingleStatus.READY_TO_SEND.getStatus()), DdMsgSingle.class);
-            log.info("try to change ddMsgId:{} from pendingToSend to readyToSend, result:{}", ddMsgId, send.getModifiedCount());
+            log.info("try to change ddMsgId:{} from pendingToSend to readyToSend, result:{}", ddMsgSingleId, send.getModifiedCount());
 
-            var query = mongoTemplate.updateMulti(new Query(Criteria.where("id").is(ddMsgId)
+            var query = mongoTemplate.updateMulti(new Query(Criteria.where("id").is(ddMsgSingleId)
                             .and("status").is(DdMsgSingleStatus.PENDING_TO_QUERY.getStatus())
                             .and("vendorFeedbackMode").is("QUERY")),
                     new Update().set("status", DdMsgSingleStatus.READY_TO_QUERY.getStatus()), DdMsgSingle.class);
-            log.info("try to change ddMsgId:{} from pendingToQuery to readyToQuery, result:{}", ddMsgId, query.getModifiedCount());
+            log.info("try to change ddMsgId:{} from pendingToQuery to readyToQuery, result:{}", ddMsgSingleId, query.getModifiedCount());
         });
-        executeNormalStatus(ddMsgId);
+        executeNormalStatus(ddMsgSingleId);
     }
 }

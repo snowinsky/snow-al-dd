@@ -3,6 +3,7 @@ package com.snow.al.dd.application.mock.controller;
 import com.snow.al.dd.core.batch.exec.DdBatchExecutor;
 import com.snow.al.dd.core.batch.pack.BatchDdRequestConsumer;
 import com.snow.al.dd.core.mongo.model.DdRequest;
+import com.snow.al.dd.core.single.consume.SingleDdRequestConsumer;
 import com.snow.al.dd.core.single.exec.DdSingleExecutor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ public class TestMongoController {
     private final BatchDdRequestConsumer batchDdRequestConsumer;
     private final DdBatchExecutor ddBatchExecutor;
     private final DdSingleExecutor ddSingleExecutor;
+    private final SingleDdRequestConsumer singleDdRequestConsumer;
 
 
     @GetMapping("/testPack")
@@ -39,9 +41,15 @@ public class TestMongoController {
         ddBatchExecutor.executeNormalStatus(batchId);
     }
 
-    @GetMapping("/testExec/single/{id}")
-    public void testSingleExec(@PathVariable("id") String id) {
-        ddSingleExecutor.executeNormalStatus(id);
+    @GetMapping("/testExec/single/")
+    public void testSingleExec() {
+        for (int i = 0; i < 1; i++) {
+            new Thread(() -> {
+                List<DdRequest> a = new ArrayList<>();
+                a.add(new DdRequest("abc" + System.currentTimeMillis()));
+                singleDdRequestConsumer.consume(a);
+            }).start();
+        }
     }
 
 

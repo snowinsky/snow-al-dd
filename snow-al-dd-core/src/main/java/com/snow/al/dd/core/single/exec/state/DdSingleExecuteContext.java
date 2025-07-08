@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 @RequiredArgsConstructor
 @Getter
 public class DdSingleExecuteContext {
-    private final String ddMsgId;
+    private final String ddMsgSingleId;
     private final MongoTemplate mongoTemplate;
     private final DdLock ddLock;
     private final VendorSingleExecuteAdapter vendorSingleExecuteAdapter;

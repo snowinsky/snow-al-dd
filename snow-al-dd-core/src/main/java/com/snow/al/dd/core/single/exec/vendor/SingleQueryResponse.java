@@ -41,7 +41,7 @@ public class SingleQueryResponse extends VendorResponse {
             @Override
             public void accept(SingleQueryResponse response, DdSingleExecuteContext context) {
                 context.getMongoTemplate().updateMulti(
-                        new Query(new Criteria("id").is(response.getDdMsgId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
+                        new Query(new Criteria("id").is(context.getDdMsgSingleId()).and("status").is(DdMsgSingleStatus.READY_TO_QUERY.getStatus())),
                         new Update().set("status", DdMsgSingleStatus.READY_TO_NOTIFY.getStatus())
                                 .set("mchTradeNo", response.getMchTradeNo())
                                 .set("vendorTradeNo", response.getVendorTradeNo())
@@ -56,13 +56,13 @@ public class SingleQueryResponse extends VendorResponse {
             @Override
             public void accept(SingleQueryResponse response, DdSingleExecuteContext context) {
                 context.getMongoTemplate().updateMulti(
-                        new Query(new Criteria("id").is(response.getDdMsgId()).and("status").is(DdMsgSingleStatus.READY_TO_QUERY.getStatus())),
+                        new Query(new Criteria("id").is(context.getDdMsgSingleId()).and("status").is(DdMsgSingleStatus.READY_TO_QUERY.getStatus())),
                         new Update().set("status", DdMsgSingleStatus.PENDING_TO_QUERY.getStatus())
                                 .set("mchTradeNo", response.getMchTradeNo())
                                 .set("vendorTradeNo", response.getVendorTradeNo())
                                 .set("queryResLog", response.getSendResLog()),
                         DdMsgSingle.class);
-                context.getDdSingleExecTimeoutCenter().publish(context.getDdMsgId(),
+                context.getDdSingleExecTimeoutCenter().publish(context.getDdMsgSingleId(),
                         TimeLongUtil.currentTimeMillis(LocalDateTime.now().plus(response.getDelayTime())));
                 context.setState(null);
             }
@@ -71,7 +71,7 @@ public class SingleQueryResponse extends VendorResponse {
             @Override
             public void accept(SingleQueryResponse response, DdSingleExecuteContext context) {
                 context.getMongoTemplate().updateMulti(
-                        new Query(new Criteria("id").is(response.getDdMsgId()).and("status").is(DdMsgSingleStatus.READY_TO_QUERY.getStatus())),
+                        new Query(new Criteria("id").is(context.getDdMsgSingleId()).and("status").is(DdMsgSingleStatus.READY_TO_QUERY.getStatus())),
                         new Update().set("status", DdMsgSingleStatus.READY_TO_SEND.getStatus())
                                 .set("mchTradeNo", response.getMchTradeNo())
                                 .set("queryResLog", response.getSendResLog()),

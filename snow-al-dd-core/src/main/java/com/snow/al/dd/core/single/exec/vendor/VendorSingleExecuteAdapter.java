@@ -3,6 +3,9 @@ package com.snow.al.dd.core.single.exec.vendor;
 import com.snow.al.dd.core.biztime.domain.SendTimeService;
 import com.snow.al.dd.core.distributed.ratelimiter.DdRateLimiter;
 import com.snow.al.dd.core.mongo.db.DdMsgSingle;
+import com.snow.al.dd.core.mongo.model.DdRequest;
+import com.snow.al.dd.core.single.exec.DdRequestExtractResult;
+import org.springframework.data.util.Pair;
 
 public interface VendorSingleExecuteAdapter {
 
@@ -24,4 +27,8 @@ public interface VendorSingleExecuteAdapter {
         rateLimiter.acquire();
         return send(request);
     }
+
+    Pair<Boolean, String> eligibleCheck(DdRequest ddRequest);
+
+    DdRequestExtractResult extract(DdRequest ddRequest);
 }

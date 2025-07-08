@@ -20,6 +20,7 @@ public class DdMsgSingle {
     private String mchTradeNo;
     private String vendorTradeNo;
     private String vendorFeedbackMode;
+    private String errorMsg;
     private String status;
     private Long requestAmount;
     private Long successAmount;
@@ -30,7 +31,7 @@ public class DdMsgSingle {
     private String returnMsg;
     private String returnCodeGroup;
     private String returnCodeGroupDesc;
-    private Instant createTime;
-    private Instant expireTime;
+    private Instant createAt;
+    private Instant expireAt;
 
 }

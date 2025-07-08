@@ -36,9 +36,9 @@ public class DdSingleExecTimeoutCenter {
         timeoutCenterBootstrap.publish(timeoutTask);
     }
 
-    public void publish(String batchId, long timeoutSeconds) {
+    public void publish(String ddMsgSingleId, long timeoutSeconds) {
         TimeoutTask timeoutTask = new TimeoutTask();
-        timeoutTask.setTaskFromId(batchId);
+        timeoutTask.setTaskFromId(ddMsgSingleId);
         timeoutTask.setTaskFrom(bizTag);
         timeoutTask.setTaskTimeout(timeoutSeconds);
         publish(timeoutTask);

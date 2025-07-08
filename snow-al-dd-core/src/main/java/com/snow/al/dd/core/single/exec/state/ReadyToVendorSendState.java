@@ -47,7 +47,7 @@ public class ReadyToVendorSendState implements DdSingleExecuteState {
                     },
                     () -> {
                         var vendorSendResponse = new SingleSendResponse("", "");
-                        vendorSendResponse.setDdMsgId(single.getId());
+                        vendorSendResponse.setDdMsgSingleId(single.getId());
                         vendorSendResponse.setSuccessAmount(0L);
                         vendorSendResponse.setReturnCode("CANCEL");
                         vendorSendResponse.setReturnMsg("NO BUSINESS TIME");

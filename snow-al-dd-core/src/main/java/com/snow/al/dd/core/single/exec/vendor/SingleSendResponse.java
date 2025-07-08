@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Setter
 public class SingleSendResponse extends VendorResponse {
 
-    private String ddMsgId;
+    private String ddMsgSingleId;
     private String mchTradeNo;
     private String vendorTradeNo;
     private Long successAmount;
@@ -39,7 +39,7 @@ public class SingleSendResponse extends VendorResponse {
             @Override
             public void accept(SingleSendResponse response, DdSingleExecuteContext context) {
                 context.getMongoTemplate().updateMulti(
-                        new Query(new Criteria("id").is(response.getDdMsgId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
+                        new Query(new Criteria("id").is(context.getDdMsgSingleId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
                         new Update().set("status", DdMsgSingleStatus.READY_TO_NOTIFY.getStatus())
                                 .set("mchTradeNo", response.getMchTradeNo())
                                 .set("vendorTradeNo", response.getVendorTradeNo())
@@ -54,7 +54,7 @@ public class SingleSendResponse extends VendorResponse {
             @Override
             public void accept(SingleSendResponse response, DdSingleExecuteContext context) {
                 context.getMongoTemplate().updateMulti(
-                        new Query(new Criteria("id").is(response.getDdMsgId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
+                        new Query(new Criteria("id").is(context.getDdMsgSingleId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
                         new Update().set("status", DdMsgSingleStatus.READY_TO_NOTIFY.getStatus())
                                 .set("mchTradeNo", response.getMchTradeNo())
                                 .set("vendorTradeNo", response.getVendorTradeNo())
@@ -69,7 +69,7 @@ public class SingleSendResponse extends VendorResponse {
             @Override
             public void accept(SingleSendResponse response, DdSingleExecuteContext context) {
                 context.getMongoTemplate().updateMulti(
-                        new Query(new Criteria("id").is(response.getDdMsgId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
+                        new Query(new Criteria("id").is(context.getDdMsgSingleId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
                         new Update().set("status", DdMsgSingleStatus.READY_TO_SEND.getStatus())
                                 .set("mchTradeNo", response.getMchTradeNo())
                                 .set("vendorTradeNo", response.getVendorTradeNo())
@@ -80,7 +80,7 @@ public class SingleSendResponse extends VendorResponse {
                 if (response.getDelayTime() == null) {
                     context.setState(DdMsgSingleStatus.READY_TO_SEND.getState());
                 } else {
-                    context.getDdSingleExecTimeoutCenter().publish(context.getDdMsgId(), TimeLongUtil.currentTimeMillis(LocalDateTime.now().plus(response.getDelayTime())));
+                    context.getDdSingleExecTimeoutCenter().publish(context.getDdMsgSingleId(), TimeLongUtil.currentTimeMillis(LocalDateTime.now().plus(response.getDelayTime())));
                     context.setState(null);
                 }
             }
@@ -89,7 +89,7 @@ public class SingleSendResponse extends VendorResponse {
             @Override
             public void accept(SingleSendResponse response, DdSingleExecuteContext context) {
                 context.getMongoTemplate().updateMulti(
-                        new Query(new Criteria("id").is(response.getDdMsgId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
+                        new Query(new Criteria("id").is(context.getDdMsgSingleId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
                         new Update().set("status", DdMsgSingleStatus.READY_TO_SEND.getStatus())
                                 .set("mchTradeNo", response.getMchTradeNo())
                                 .set("vendorTradeNo", response.getVendorTradeNo())
@@ -100,7 +100,7 @@ public class SingleSendResponse extends VendorResponse {
                 if (response.getDelayTime() == null) {
                     context.setState(DdMsgSingleStatus.READY_TO_SEND.getState());
                 } else {
-                    context.getDdSingleExecTimeoutCenter().publish(context.getDdMsgId(), TimeLongUtil.currentTimeMillis(LocalDateTime.now().plus(response.getDelayTime())));
+                    context.getDdSingleExecTimeoutCenter().publish(context.getDdMsgSingleId(), TimeLongUtil.currentTimeMillis(LocalDateTime.now().plus(response.getDelayTime())));
                     context.setState(null);
                 }
             }
@@ -108,8 +108,8 @@ public class SingleSendResponse extends VendorResponse {
         QUERY {
             @Override
             public void accept(SingleSendResponse response, DdSingleExecuteContext context) {
-                context.getMongoTemplate().updateMulti(
-                        new Query(new Criteria("id").is(response.getDdMsgId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
+                var UpdateResult = context.getMongoTemplate().updateMulti(
+                        new Query(new Criteria("id").is(context.getDdMsgSingleId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
                         new Update().set("status",
                                         response.getDelayTime() == null ? DdMsgSingleStatus.READY_TO_QUERY.getStatus() : DdMsgSingleStatus.PENDING_TO_QUERY.getStatus())
                                 .set("mchTradeNo", response.getMchTradeNo())
@@ -121,7 +121,7 @@ public class SingleSendResponse extends VendorResponse {
                 if (response.getDelayTime() == null) {
                     context.setState(DdMsgSingleStatus.READY_TO_SEND.getState());
                 } else {
-                    context.getDdSingleExecTimeoutCenter().publish(context.getDdMsgId(), TimeLongUtil.currentTimeMillis(LocalDateTime.now().plus(response.getDelayTime())));
+                    context.getDdSingleExecTimeoutCenter().publish(context.getDdMsgSingleId(), TimeLongUtil.currentTimeMillis(LocalDateTime.now().plus(response.getDelayTime())));
                     context.setState(null);
                 }
             }
@@ -130,7 +130,7 @@ public class SingleSendResponse extends VendorResponse {
             @Override
             public void accept(SingleSendResponse response, DdSingleExecuteContext context) {
                 context.getMongoTemplate().updateMulti(
-                        new Query(new Criteria("id").is(response.getDdMsgId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
+                        new Query(new Criteria("id").is(context.getDdMsgSingleId()).and("status").is(DdMsgSingleStatus.READY_TO_SEND.getStatus())),
                         new Update().set("status", DdMsgSingleStatus.PENDING_TO_QUERY.getStatus())
                                 .set("mchTradeNo", response.getMchTradeNo())
                                 .set("vendorTradeNo", response.getVendorTradeNo())
