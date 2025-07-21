@@ -24,6 +24,8 @@ public class DdMsgSingle {
     private String status;
     private Long requestAmount;
     private Long successAmount;
+    private Integer sendCount;
+    private Integer queryCount;
     private String sendResLog;
     private String queryResLog;
     private String callbackLog;

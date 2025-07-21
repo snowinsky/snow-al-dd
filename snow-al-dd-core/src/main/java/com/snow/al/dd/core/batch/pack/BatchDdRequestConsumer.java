@@ -18,6 +18,8 @@ public class BatchDdRequestConsumer {
 
     public void consume(List<DdRequest> ddRequests) {
         log.info("start to consume the batch dd requests size {}", ddRequests.size());
+        ThreadLocal<Long> ll = new ThreadLocal<>();
+        ll.set(System.currentTimeMillis());
         ddRequests.stream().filter(ddRequest -> {
             ddRequest.parseDdMsgBody(batchDdRequestExtractor);
             return true;
