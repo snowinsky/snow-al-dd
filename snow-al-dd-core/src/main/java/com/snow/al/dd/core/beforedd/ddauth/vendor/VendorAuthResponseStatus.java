@@ -1,4 +1,4 @@
-package com.snow.al.dd.core.ddauth.vendor;
+package com.snow.al.dd.core.beforedd.ddauth.vendor;
 
 public enum VendorAuthResponseStatus  {
     /**
@@ -13,6 +13,7 @@ public enum VendorAuthResponseStatus  {
      * 成功，返回authCode，而且不会覆盖以前的 authCode，直接插入就行
      */
     SUCCESS_WITH_AUTHCODE_APPEND,
+    SUCCESS_WAIT_CALLBACK,
     /**
      * 失败，返回重复签约，则无需操作数据库，直接返回成功即可
      */

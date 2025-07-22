@@ -1,4 +1,4 @@
-package com.snow.al.dd.core.ddauth.vendor;
+package com.snow.al.dd.core.beforedd.ddauth.vendor;
 
 public class BankAcctSignAuthRequest extends AuthRequest<BankAcctSignAuthResponse>{
 
